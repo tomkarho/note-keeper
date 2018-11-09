@@ -24,6 +24,6 @@ object DataManager {
     }
 
     private fun initializeNotes() {
-        notes.add(NoteInfo(courses["java_fundementals"]!!, "TEST", "TEST"))
+        notes.add(NoteInfo(courses["android_async"]!!, "TEST", "TEST"))
     }
 }

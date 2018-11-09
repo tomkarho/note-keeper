@@ -11,6 +11,8 @@ import kotlinx.android.synthetic.main.content_main.*
 
 class MainActivity : AppCompatActivity() {
 
+    private var notePosition = POSITION_NOT_SET
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -21,6 +23,21 @@ class MainActivity : AppCompatActivity() {
 
         dropDownCourses.adapter = adapterCourses
 
+        notePosition = intent.getIntExtra(EXTRA_NOTE_POSITION, POSITION_NOT_SET)
+
+        if(notePosition != POSITION_NOT_SET) {
+            displayNote();
+        }
+    }
+
+    private fun displayNote() {
+        val note = DataManager.notes[notePosition];
+        val coursePosition = DataManager.courses.values.indexOf(note.course)
+
+        dropDownCourses.setSelection(coursePosition)
+
+        textFieldTitle.setText(note.title)
+        textFieldNoteContent.setText(note.text)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
