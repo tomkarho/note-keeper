@@ -1,11 +1,12 @@
 package com.tomkarho.android.notekeeper
 
-class DataManager {
+object DataManager {
     val courses = HashMap<String, CourseInfo>()
-    val cotes = ArrayList<NoteInfo>()
+    val notes = ArrayList<NoteInfo>()
 
     init {
         initializeCourses()
+        initializeNotes()
     }
 
     private fun initializeCourses() {
@@ -20,5 +21,9 @@ class DataManager {
         c = CourseInfo(title = "Java fundementals", courseId = "java_fundementals")
 
         courses[c.courseId] = c
+    }
+
+    private fun initializeNotes() {
+        notes.add(NoteInfo(courses["java_fundementals"]!!, "TEST", "TEST"))
     }
 }
