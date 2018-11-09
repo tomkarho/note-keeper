@@ -1,5 +1,6 @@
 package com.tomkarho.android.notekeeper
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity;
@@ -14,8 +15,9 @@ class ListActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
 
         fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
+            val intent = Intent(this, MainActivity::class.java)
+
+            startActivity(intent)
         }
     }
 
