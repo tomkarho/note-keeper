@@ -65,14 +65,37 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    override fun onPrepareOptionsMenu(menu: Menu?): Boolean {
+        if(notePosition == 0) {
+            disableMenuItem(menu, R.id.action_previous)
+        }
+
+        if(notePosition >= DataManager.notes.lastIndex) {
+            disableMenuItem(menu, R.id.action_next)
+        }
+
+        return super.onPrepareOptionsMenu(menu)
+    }
+
+    private fun disableMenuItem(menu: Menu?, menuItem: Int) {
+        val item = menu?.findItem(menuItem)
+
+        if(item != null) {
+            item.icon = getDrawable(R.drawable.ic_no_white_24dp)
+            item.isEnabled = false
+        }
+    }
+
     // Todo: would be cool if person could swipe right for next and left for previous right?
     private fun movePrevious() {
         --notePosition
         displayNote()
+        invalidateOptionsMenu()
     }
 
     private fun moveNext() {
         ++notePosition
         displayNote()
+        invalidateOptionsMenu()
     }
 }
