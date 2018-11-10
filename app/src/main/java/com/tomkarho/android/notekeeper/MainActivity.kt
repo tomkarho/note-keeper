@@ -25,9 +25,12 @@ class MainActivity : AppCompatActivity() {
 
         notePosition = intent.getIntExtra(EXTRA_NOTE_POSITION, POSITION_NOT_SET)
 
-        if(notePosition != POSITION_NOT_SET) {
-            displayNote();
-        }
+        if(notePosition != POSITION_NOT_SET) displayNote() else createNote()
+    }
+
+    private fun createNote() {
+        DataManager.notes.add(NoteInfo())
+        notePosition = DataManager.notes.lastIndex
     }
 
     private fun displayNote() {
@@ -63,6 +66,18 @@ class MainActivity : AppCompatActivity() {
             }
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        saveNote()
+    }
+
+    private fun saveNote() {
+        val note = DataManager.notes[notePosition]
+        note.title = textFieldTitle.text.toString()
+        note.text = textFieldNoteContent.text.toString()
+        note.course = dropDownCourses.selectedItem as CourseInfo
     }
 
     override fun onPrepareOptionsMenu(menu: Menu?): Boolean {
