@@ -24,6 +24,11 @@ object DataManager {
     }
 
     private fun initializeNotes() {
-        notes.add(NoteInfo(courses["android_async"]!!, "TEST", "TEST"))
+        notes.add(NoteInfo(courses["android_intents"]!!, "TEST1", "TEST1"))
+        notes.add(NoteInfo(courses["android_async"]!!, "TEST2", "TEST2"))
+        notes.add(NoteInfo(courses["android_intents"]!!, "TEST3", "TEST3"))
+        notes.add(NoteInfo(courses["java_fundementals"]!!, "TEST4", "TEST4"))
+        notes.add(NoteInfo(courses["java_fundementals"]!!, "TEST5", "TEST5"))
+        notes.add(NoteInfo(courses["java_fundementals"]!!, "TEST6", "TEST6"))
     }
 }

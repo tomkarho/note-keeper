@@ -43,6 +43,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.menu_main, menu)
+
         return true
     }
 
@@ -52,7 +53,26 @@ class MainActivity : AppCompatActivity() {
         // as you specify a parent activity in AndroidManifest.xml.
         return when (item.itemId) {
             R.id.action_settings -> true
+            R.id.action_previous -> {
+                movePrevious()
+                true
+            }
+            R.id.action_next -> {
+                moveNext()
+                true
+            }
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+    // Todo: would be cool if person could swipe right for next and left for previous right?
+    private fun movePrevious() {
+        --notePosition
+        displayNote()
+    }
+
+    private fun moveNext() {
+        ++notePosition
+        displayNote()
     }
 }
